@@ -18,7 +18,7 @@ volatile int UV;
 String AABB;
 String AACC;
 String TouchGrass;
-Adafruit_MQTT_Client mqtt(&client, "io.adafruit.com", 1883, "qwopqwop", "aio_KdBg84s92mBJnKIIzCj5AZXiom8n");
+Adafruit_MQTT_Client mqtt(&client, "your mqtt site", port, "username", "PASSWORD");
 void MQTT_connect() {
   int8_t ret;
   if (mqtt.connected()) {
@@ -42,9 +42,9 @@ void MQTT_connect() {
 int8_t timeZone = 8;
 const PROGMEM char *ntpServer = "ntp1.aliyun.com";
 DHT dht5(5, 11);
-Adafruit_MQTT_Publish MQTT_Topic_HotBaka = Adafruit_MQTT_Publish(&mqtt, "qwopqwop/feeds/HotBaka");
-Adafruit_MQTT_Publish MQTT_Topic_WetBaka = Adafruit_MQTT_Publish(&mqtt, "qwopqwop/feeds/WetBaka");
-Adafruit_MQTT_Publish MQTT_Topic_UVBaka = Adafruit_MQTT_Publish(&mqtt, "qwopqwop/feeds/UVBaka");
+Adafruit_MQTT_Publish MQTT_Topic_HotBaka = Adafruit_MQTT_Publish(&mqtt, "temperature feeds name");
+Adafruit_MQTT_Publish MQTT_Topic_WetBaka = Adafruit_MQTT_Publish(&mqtt, "humidity feeds name");
+Adafruit_MQTT_Publish MQTT_Topic_UVBaka = Adafruit_MQTT_Publish(&mqtt, "UV feeds name");
 SimpleTimer timer;
 
 void Simple_timer_1() {
@@ -63,7 +63,7 @@ void setup(){
   AABB = "";
   AACC = "";
   TouchGrass = "";
-  WiFi.begin("The slow one D:", "Hc37168328");
+  WiFi.begin("wifi name", "wifi password");
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
